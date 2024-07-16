@@ -4,7 +4,14 @@ import "dotenv/config";
 import mongoose from "mongoose";
 import userRoutes from "./routes/users";
 import authRoutes from "./routes/auth";
-mongoose.connect(process.env.MONGO_URL as string);
+mongoose
+  .connect(process.env.MONGO_URL as string)
+  .then(() => {
+    console.log("Mongo Connection Successful !");
+  })
+  .catch((e) => {
+    console.log("Mongo Connection Issues!");
+  });
 
 // created a new express app
 const app = express();
