@@ -2,7 +2,8 @@ import express, { Response, Request } from "express";
 import User from "../models/user";
 import { check, validationResult } from "express-validator";
 import bcrypt from "bcryptjs";
-import jwt, { TokenExpiredError } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
+import verifyToken from "../middleware/auth";
 const router = express.Router();
 router.post(
   "/login",
@@ -32,17 +33,28 @@ router.post(
         process.env.JWT_SECRET_KEY as string,
         { expiresIn: "1d" }
       );
-      res.cookie("auth-token", token, {
+      res.cookie("auth_token", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         maxAge: 24 * 60 * 60 * 1000,
       });
       res.status(200).json({ userId: user._id });
     } catch (e) {
-      console.log(e);
+      // console.log(e);
       res.status(500).json({ message: "Something went wrong" });
     }
   }
 );
+
+router.get("/validate-token", verifyToken, (req: Request, res: Response) => {
+  res.status(200).send({ userId: req.userId });
+});
+
+router.post("/logout", (req: Request, res: Response) => {
+  res.cookie("auth_token", "", {
+    expires: new Date(0),
+  });
+  res.send();
+});
 
 export default router;

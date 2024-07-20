@@ -1,8 +1,8 @@
 import express, { Request, Response } from "express";
 import User from "../models/user";
 import jwt from "jsonwebtoken";
-const router = express.Router();
 import { check, validationResult } from "express-validator";
+const router = express.Router();
 
 // api/users/register
 router.post(
@@ -39,7 +39,7 @@ router.post(
       });
       return res.status(200).json({ message: "Registeration Successfull" });
     } catch (e) {
-      console.log(e);
+      // console.log(e);
       res.status(500).json({
         message: "Something went wrong!",
       });

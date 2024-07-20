@@ -1,11 +1,14 @@
 import React, { useContext, useState } from "react";
 import Toast from "../components/Toast";
+import { useQuery } from "react-query";
+import * as apiClient from "../api-clients";
 type ToastMessage = {
   message: string;
   type: "SUCCESS" | "ERROR";
 };
 export type AppContext = {
   showToast: (toastMessage: ToastMessage) => void;
+  isLoggedIn: boolean;
 };
 
 // we use || undefined becuase when the app loads for the first time!
@@ -17,12 +20,16 @@ export default function AppContextProvider({
   children: React.ReactNode;
 }) {
   const [toast, setToast] = useState<ToastMessage | undefined>(undefined);
+  const { isError } = useQuery("validate-token", apiClient.validateToken, {
+    retry: false,
+  });
   return (
     <AppContext.Provider
       value={{
         showToast: (toastMessage) => {
           setToast(toastMessage);
         },
+        isLoggedIn: !isError,
       }}
     >
       {toast && (

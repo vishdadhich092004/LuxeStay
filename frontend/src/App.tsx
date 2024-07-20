@@ -2,6 +2,7 @@ import { Navigate, Route, BrowserRouter, Routes } from "react-router-dom";
 
 import Layout from "./layouts/Layout";
 import Register from "./pages/Register";
+import SignIn from "./pages/SignIn";
 function App() {
   return (
     <BrowserRouter>
@@ -30,6 +31,14 @@ function App() {
             </Layout>
           }
         ></Route>
+        <Route
+          path="/sign-in"
+          element={
+            <Layout>
+              <SignIn />
+            </Layout>
+          }
+        />
         <Route path="*" element={<Navigate to="/" />}></Route>
       </Routes>
     </BrowserRouter>
