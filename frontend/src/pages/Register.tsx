@@ -1,4 +1,3 @@
-import { useAuth0 } from "@auth0/auth0-react";
 import { useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "react-query";
 import * as apiClient from "../api-clients";
@@ -16,7 +15,6 @@ function Register() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { showToast } = useAppContext();
-  const { loginWithRedirect } = useAuth0();
   const {
     register,
     watch,
@@ -27,12 +25,8 @@ function Register() {
   const mutation = useMutation(apiClient.register, {
     onSuccess: async () => {
       showToast({ message: "Registration Success", type: "SUCCESS" });
-<<<<<<< Updated upstream
       await queryClient.invalidateQueries("validateToken");
       navigate("/");
-=======
-      loginWithRedirect();
->>>>>>> Stashed changes
     },
     onError: (error: Error) => {
       showToast({ message: `Registration Failed, ${error}`, type: "ERROR" });
