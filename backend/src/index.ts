@@ -5,10 +5,11 @@ import mongoose from "mongoose";
 import userRoutes from "./routes/users";
 import authRoutes from "./routes/auth";
 import cookieParser from "cookie-parser";
+import path from "path";
 mongoose
   .connect(process.env.MONGO_URL as string)
   .then(() => {
-    console.log("Mongo Connection Successful !");
+    console.log("Mongo Connection Successful ");
   })
   .catch((e) => {
     console.log("Mongo Connection Issues!");
@@ -30,6 +31,8 @@ app.use(
     credentials: true,
   })
 );
+// deployment thing
+app.use(express.static(path.join(__dirname, "../../frontend/dist")));
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
