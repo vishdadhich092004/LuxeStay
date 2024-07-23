@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "react-query";
-import * as apiClient from "../api-clients";
+import * as apiClient from "../api-client";
 import { useAppContext } from "../contexts/AppContext";
 import { Link, useNavigate } from "react-router-dom";
 export type RegisterFormData = {
@@ -49,7 +49,9 @@ function Register() {
             {...register("firstName", { required: "This field is required" })}
           ></input>
           {errors.firstName && (
-            <span className="text-red-500">{errors.firstName.message}</span>
+            <span className="text-red-500 text-sm font-normal">
+              {errors.firstName.message}
+            </span>
           )}
         </label>
         <label className="text-gray-700 text-sm font-bold flex-1">
@@ -59,7 +61,9 @@ function Register() {
             {...register("lastName", { required: "This field is required" })}
           ></input>
           {errors.lastName && (
-            <span className="text-red-500">{errors.lastName.message}</span>
+            <span className="text-red-500 text-sm font-normal">
+              {errors.lastName.message}
+            </span>
           )}
         </label>
       </div>
@@ -71,7 +75,9 @@ function Register() {
           {...register("email", { required: "This field is required" })}
         ></input>
         {errors.email && (
-          <span className="text-red-500">{errors.email.message}</span>
+          <span className="text-red-500 text-sm font-normal">
+            {errors.email.message}
+          </span>
         )}
       </label>
       <label className="text-gray-700 text-sm font-bold flex-1">
@@ -88,7 +94,9 @@ function Register() {
           })}
         ></input>
         {errors.password && (
-          <span className="text-red-500">{errors.password.message}</span>
+          <span className="text-red-500 text-sm font-normal">
+            {errors.password.message}
+          </span>
         )}
       </label>
       <label className="text-gray-700 text-sm font-bold flex-1">
@@ -105,7 +113,9 @@ function Register() {
           })}
         ></input>
         {errors.confirmPassword && (
-          <span className="text-red-500">{errors.confirmPassword.message}</span>
+          <span className="text-red-500 text-sm font-normal">
+            {errors.confirmPassword.message}
+          </span>
         )}
       </label>
       <span className="flex items-center justify-between">
