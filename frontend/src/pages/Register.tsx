@@ -25,7 +25,7 @@ function Register() {
   const mutation = useMutation(apiClient.register, {
     onSuccess: async () => {
       showToast({ message: "Registration Success", type: "SUCCESS" });
-      await queryClient.invalidateQueries("validateToken");
+      await queryClient.invalidateQueries("validate-token");
       navigate("/");
     },
     onError: (error: Error) => {

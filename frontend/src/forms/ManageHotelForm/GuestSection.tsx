@@ -13,6 +13,7 @@ function GuestSection() {
         <label className="text-gray-700 text-sm font-bold">
           Adults
           <input
+            defaultValue={1}
             type="number"
             min={1}
             className="border rounded w-full py-2 px-3 font-normal"
@@ -29,6 +30,7 @@ function GuestSection() {
         <label className="text-gray-700 text-sm font-bold">
           Children
           <input
+            defaultValue={1}
             type="number"
             min={0}
             className="border rounded w-full py-2 px-3 font-normal"

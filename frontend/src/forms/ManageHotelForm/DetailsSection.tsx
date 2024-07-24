@@ -1,5 +1,6 @@
 import { useFormContext } from "react-hook-form";
 import { HotelFormData } from "./ManageHotelForm";
+import { countries } from "../../config/countries.ts";
 function DetailsSection() {
   const {
     register,
@@ -38,11 +39,17 @@ function DetailsSection() {
         </label>
         <label className="text-gray-700 text-sm font-bold flex-1">
           Country
-          <input
-            type="text"
+          <select
             className="border rounded w-full py-1 font-normal"
             {...register("country", { required: "This field is required" })}
-          ></input>
+          >
+            <option value="">Select a country</option>
+            {countries.map((country, index) => (
+              <option key={index} value={country}>
+                {country}
+              </option>
+            ))}
+          </select>
           {errors.country && (
             <span className="text-red-500 text-sm font-normal">
               {errors.country.message}

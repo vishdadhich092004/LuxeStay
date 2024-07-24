@@ -23,7 +23,7 @@ function SignIn() {
         message: "Sign in Succesful",
         type: "SUCCESS",
       });
-      await queryClient.invalidateQueries("validateToken");
+      await queryClient.invalidateQueries("validate-token");
       navigate("/");
     },
     onError: (error: Error) => {
