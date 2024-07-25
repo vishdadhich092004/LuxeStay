@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-export type HotelType = {
+export interface HotelType {
   _id: string;
   userId: string;
   name: string;
@@ -14,7 +14,7 @@ export type HotelType = {
   starRating: number;
   imageUrls: string[];
   lastUpdated: Date;
-};
+}
 
 const hotelSchema = new mongoose.Schema<HotelType>({
   userId: {
