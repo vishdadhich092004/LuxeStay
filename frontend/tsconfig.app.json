@@ -24,5 +24,8 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"]
+  "include": [
+    "src/**/*",
+    "../backend/src/shared/**/*.ts" // Add this line to include shared types
+  ]
 }
