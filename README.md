@@ -1,5 +1,4 @@
-
-```markdown
+````markdown
 # LuxeStay
 
 LuxeStay is a modern hotel booking web application built using the MERN stack (MongoDB, Express.js, React, Node.js) with TypeScript.
@@ -19,16 +18,17 @@ The project aims to provide users with a seamless experience to book hotels, vie
 git clone https://github.com/vishdadhich092004/LuxeStay.git
 cd LuxeStay
 ```
+````
 
 ### Backend Setup
 
-1. Navigate to the backend directory:
+1.  Navigate to the backend directory:
 
     ```bash
     cd backend
     ```
 
-2. Install dependencies:
+2.  Install dependencies:
 
     ```bash
     npm install
@@ -36,17 +36,18 @@ cd LuxeStay
     yarn install
     ```
 
-3. Set up environment variables:
+3.  Set up environment variables:
 
-    Create a `.env` file in the `backend` directory with the following content:
+        Create a `.env` file in the `backend` directory with the following content:
 
-    ```env
-    MONGO_URL  
-JWT_SECRET_KEY  
-FRONTEND_URL 
+        ```env
+        MONGO_URL
+
+    JWT_SECRET_KEY  
+    FRONTEND_URL
     ```
 
-4. Start the backend server:
+4.  Start the backend server:
 
     ```bash
     npm run dev
@@ -58,33 +59,33 @@ FRONTEND_URL
 
 1. Navigate to the frontend directory:
 
-    ```bash
-    cd frontend
-    ```
+   ```bash
+   cd frontend
+   ```
 
 2. Install dependencies:
 
-    ```bash
-    npm install
-    # or
-    yarn install
-    ```
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
 
 3. Set up environment variables:
 
-    Create a `.env` file in the `frontend` directory with the following content:
+   Create a `.env` file in the `frontend` directory with the following content:
 
-    ```env
-    VITE_API_BASE_URL=http://localhost:7000
-    ```
+   ```env
+   VITE_API_BASE_URL=http://localhost:7000
+   ```
 
 4. Start the frontend development server:
 
-    ```bash
-    npm run dev
-    # or
-    yarn dev
-    ```
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
 
 ## Usage
 
@@ -93,6 +94,7 @@ After completing the installation steps, you can access the application in your 
 ## Technologies Used
 
 - **Frontend:**
+
   - React
   - TypeScript
   - Vite
@@ -139,6 +141,8 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
 ```
 
 You can copy and paste this Markdown content into your `README.md` file.
+```

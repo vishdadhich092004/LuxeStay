@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-const UI_URL = "http://localhost:5174";
+const UI_URL = "http://localhost:5173";
 import path from "path";
 test.beforeEach(async ({ page }) => {
   await page.goto(UI_URL);
