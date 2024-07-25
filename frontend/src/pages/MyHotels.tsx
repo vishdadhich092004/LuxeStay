@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import * as apiClient from "../api-client";
 import { useAppContext } from "../contexts/AppContext";
-import { HotelType } from "../../../backend/src/models/hotel";
+import { HotelType } from "../../../backend/src/shared/types";
 import { IoLocation, IoPricetags } from "react-icons/io5";
 import { FaPerson, FaChildren, FaStar } from "react-icons/fa6";
 import { BsBuildingsFill } from "react-icons/bs";
@@ -25,7 +25,17 @@ function MyHotels() {
   }
 
   if (isError || !hotelData || hotelData.length === 0) {
-    return <span className="text-2xl font-bold">No Hotels Found</span>;
+    return (
+      <div className="flex justify-between">
+        <span className="text-2xl font-bold">No Hotels Found</span>
+        <Link
+          to="/add-hotel"
+          className="flex bg-yellow-600 text-white text-cl font-bold p-2 hover:bg-yellow-500"
+        >
+          Add Hotel
+        </Link>
+      </div>
+    );
   }
 
   return (
