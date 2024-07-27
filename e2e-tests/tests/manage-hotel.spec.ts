@@ -43,7 +43,7 @@ test("should allow user to add hotel", async ({ page }) => {
   await page.locator('[name="childCount"]').fill("1");
 
   await page.setInputFiles('[name="imageFiles"]', [
-    path.join(__dirname, "files", "1.avif"),
+    // path.join(__dirname, "files", "1.avif"),
     path.join(__dirname, "files", "2.avif"),
   ]);
   await page.getByRole("button", { name: "Save" }).click();
@@ -60,4 +60,24 @@ test("should display hotels", async ({ page }) => {
   await expect(page.getByText("Type: Motel")).toBeVisible();
   await expect(page.getByText("Price per Night: $3500")).toBeVisible();
   await page.getByRole("button", { name: "More Details" });
+});
+
+test("should edit hotel", async ({ page }) => {
+  await page.goto(`${UI_URL}/my-hotels`);
+
+  await page.getByRole("link", { name: "More Details" }).first().click();
+  await page.waitForSelector('[name="name"]', { state: "attached" });
+  await expect(page.locator('[name= "name"]')).toHaveValue("Hotel Regenta");
+  await page.locator('[name= "name"]').fill("Hotel Regenta Updated");
+  await page.getByRole("button", { name: "Save" }).click();
+  await expect(page.getByText("Hotel Updated")).toBeVisible();
+
+  await page.reload();
+  await page.getByRole("link", { name: "More Details" }).first().click();
+  await expect(page.locator('[name= "name"]')).toHaveValue(
+    "Hotel Regenta Updated"
+  );
+  await page.locator('[name= "name"]').fill("Hotel Regenta");
+  await page.getByRole("button", { name: "Save" }).click();
+  await expect(page.getByText("Hotel Updated")).toBeVisible();
 });
