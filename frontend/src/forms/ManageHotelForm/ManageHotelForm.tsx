@@ -6,6 +6,7 @@ import GuestSection from "./GuestSection";
 import ImagesSection from "./ImagesSection";
 import { HotelType } from "../../../../backend/src/shared/types";
 import { useEffect } from "react";
+
 export type HotelFormData = {
   name: string;
   city: string;
@@ -22,9 +23,27 @@ export type HotelFormData = {
 };
 
 type Props = {
+  hotel?: HotelType;
   onSave: (hotelFormData: FormData) => void;
   isLoading: boolean;
-  hotel?: HotelType;
+};
+
+// Function to transform HotelType to HotelFormData
+const transformHotelTypeToFormData = (hotel: HotelType): HotelFormData => {
+  return {
+    name: hotel.name,
+    city: hotel.city,
+    country: hotel.country,
+    description: hotel.description,
+    type: hotel.type,
+    pricePerNight: hotel.pricePerNight.toString(),
+    starRating: hotel.starRating,
+    facilities: hotel.facilities || [],
+    imageFiles: new DataTransfer().files, // Assuming no initial files
+    imageUrls: hotel.imageUrls || [],
+    adultCount: hotel.adultCount,
+    childCount: hotel.childCount,
+  };
 };
 
 function ManageHotelForm({ onSave, isLoading, hotel }: Props) {
@@ -32,8 +51,12 @@ function ManageHotelForm({ onSave, isLoading, hotel }: Props) {
   const { handleSubmit, reset } = formMethods;
 
   useEffect(() => {
-    reset(hotel);
-  }, [hotel, reset]); // pre populates the hotel form for edit
+    if (hotel) {
+      reset(transformHotelTypeToFormData(hotel));
+    } else {
+      reset(); // Reset to default values
+    }
+  }, [hotel, reset]); // Pre-populates the hotel form for edit
 
   const onSubmit = handleSubmit((formDataJson: HotelFormData) => {
     const formData = new FormData();
@@ -48,13 +71,12 @@ function ManageHotelForm({ onSave, isLoading, hotel }: Props) {
     formData.append("pricePerNight", formDataJson.pricePerNight.toString());
     formData.append("starRating", formDataJson.starRating.toString());
     formData.append("adultCount", formDataJson.adultCount.toString());
-    formData.append("childCount", formDataJson.adultCount.toString());
+    formData.append("childCount", formDataJson.childCount.toString());
 
     formDataJson.facilities.forEach((facility, index) => {
       formData.append(`facilities[${index}]`, facility);
     });
-    // [image1.jpeg, image2.jpeg, image3.jpeg]
-    // imageUrls =  [image1.jpeg]
+
     if (formDataJson.imageUrls) {
       formDataJson.imageUrls.forEach((url, index) => {
         formData.append(`imageUrls[${index}]`, url);
@@ -66,6 +88,7 @@ function ManageHotelForm({ onSave, isLoading, hotel }: Props) {
 
     onSave(formData);
   });
+
   return (
     <FormProvider {...formMethods}>
       <form className="flex flex-col gap-10" onSubmit={onSubmit}>
