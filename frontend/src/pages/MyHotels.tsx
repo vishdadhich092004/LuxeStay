@@ -26,11 +26,11 @@ function MyHotels() {
 
   if (isError || !hotelData || hotelData.length === 0) {
     return (
-      <div className="flex justify-between">
+      <div className="flex justify-between items-center">
         <span className="text-2xl font-bold">No Hotels Found</span>
         <Link
           to="/add-hotel"
-          className="flex bg-yellow-600 text-white text-cl font-bold p-2 hover:bg-yellow-500"
+          className="bg-yellow-600 text-white font-bold p-2 hover:bg-yellow-500"
         >
           Add Hotel
         </Link>
@@ -44,7 +44,7 @@ function MyHotels() {
         <h1 className="text-3xl font-bold">My Hotels</h1>
         <Link
           to="/add-hotel"
-          className="flex bg-yellow-600 text-white text-cl font-bold p-2 hover:bg-yellow-500"
+          className="bg-yellow-600 text-white font-bold p-2 hover:bg-yellow-500"
         >
           Add Hotel
         </Link>
@@ -53,10 +53,10 @@ function MyHotels() {
         {hotelData.map((hotel: HotelType) => (
           <div
             key={hotel._id}
-            className="flex flex-col justify-between border border-slate-300 rounded-lg p-8 gap-5 shadow-lg w-full"
+            className="flex flex-col border border-slate-300 rounded-lg p-8 gap-5 shadow-lg w-full"
           >
             <h2 className="text-2xl font-bold">{hotel.name}</h2>
-            <div className="whitespace-pre-line">{hotel.description}</div>
+            <p className="whitespace-pre-line">{hotel.description}</p>
             <div className="grid grid-cols-2 gap-4">
               <div className="flex items-center">
                 <IoLocation className="mr-1" />
@@ -91,7 +91,7 @@ function MyHotels() {
                 ))}
               </ul>
             </div>
-            <div className="flex justify-between">
+            <div className="flex justify-between items-center">
               <div className="flex gap-2 mt-4">
                 {hotel.imageUrls.map((url, index) => (
                   <img
@@ -104,7 +104,7 @@ function MyHotels() {
               </div>
               <Link
                 to={`/edit-hotel/${hotel._id}`}
-                className="bg-yellow-600 text-white p-2 font-bold hover:bg-yellow-500 h-10 mt-10"
+                className="bg-yellow-600 text-white font-bold p-2 hover:bg-yellow-500"
               >
                 More Details
               </Link>

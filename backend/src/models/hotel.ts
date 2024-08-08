@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { HotelType } from "../shared/types";
-const hotelSchema = new mongoose.Schema<HotelType>({
+export const hotelSchema = new mongoose.Schema<HotelType>({
   userId: {
     type: String,
     required: true,
